@@ -89,7 +89,6 @@ namespace MarketingBtrl.Services
                 foreach(var p in products)
                 {
                     var pivot = results.FirstOrDefault(x => x.ProdictId == p.Id && x.RetailerId == r.Id);
-                    //keyValuePairs.Add(new PivotKey { }, pivot == null ? 0 : pivot.ProductsNr);
                     res[i][j] = pivot == null ? 0 : pivot.ProductsNr;
                     j++;
                 }
@@ -106,21 +105,6 @@ namespace MarketingBtrl.Services
         public async Task<List<RemunerationStatisticModel>> GetStatistics (int month, int year)
         {
 
-            //var query = _repositoryWrapper.RepositoryContext.Remunerations.Where(x => x.Month == month && x.Year == year).GroupBy(x => new { x.ProductId, x.RetailerId }, (key, g) => new RemunerationPivotDto { RetailerId = key.RetailerId, ProdictId = key.ProductId, ProductsNr = g.Count() });
-
-            //string query = @"
-            //                select x.Year, x.Month, r.Name, p.Name, x.ProductsNr
-            //                from Products p inner join
-            //                (select r.Year, r.Month, r.RetailerId, r.ProductId, count(*) as ProductsNr
-            //                from dbo.Remunerations r
-            //                where r.Year = @year and r.Month = @month
-            //                group by r.Year, r.Month, r.RetailerId, r.ProductId) as x on p.Id = x.ProductId
-            //                inner join Retailers r on r.Id = x.RetailerId
-            //                ";
-            //var results = _repositoryWrapper.RepositoryContext.Database.FromSqlRaw("", new SqlParameter("@year", year), new SqlParameter("@month", month));
-
-
-            //queryAllCustomers is an IEnumerable<Customer>
             var query = (from r in _repositoryWrapper.RepositoryContext.Remunerations
                                  group r by new { r.Year, r.Month, r.ProductId, r.RetailerId } into g
                                  select new
