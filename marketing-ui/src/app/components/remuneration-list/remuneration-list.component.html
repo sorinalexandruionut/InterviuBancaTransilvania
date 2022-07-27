@@ -1,0 +1,48 @@
+<div class="p-grid">
+    <div class="p-col-12 p-text-right">
+        <button (click)="showDialogue(null)" pButton pRipple type="button" label="ADD REMUNERATION"
+            class="p-button-rounded p-button-warning"></button>
+    </div>
+</div>
+
+<p-table [value]="remunerations">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>An</th>
+            <th>Luna</th>
+            <th>Produs</th>
+            <th>Remuneratie</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-remuneration>
+        <tr>
+            <td>{{remuneration.year}}</td>
+            <td>{{remuneration.month}}</td>
+            <td>{{remuneration.product}}</td>
+            <td>{{remuneration.bonus}}</td>
+            <th> <button (click)="showDialogue(remuneration)" pButton type="button" label="EDIT"
+                    class="p-button-rounded p-button-info"></button></th>
+        </tr>
+    </ng-template>
+</p-table>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<app-statistics-remuneration></app-statistics-remuneration>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<app-pivot-remuneration></app-pivot-remuneration>
+
+<hr/>
+<app-remuneration-dialog #d (refreshData)="getData()"></app-remuneration-dialog>

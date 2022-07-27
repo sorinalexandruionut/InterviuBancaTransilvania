@@ -1,0 +1,46 @@
+<div class="p-grid">
+    <div class="p-col-1">
+        <label for="month"> Month</label>
+    </div>
+    <div class="p-col-2">
+        <p-dropdown  [id]="'month'" appendTo="body" [filter]="true" [(ngModel)]="month"
+            [placeholder]="'choose a month'" [showClear]="true" [options]="monthOptions" (ngModelChange)="ddlChange($event)">
+        </p-dropdown>
+    </div>
+    <div class="p-col-1">
+        <label for="year"> Year</label>
+    </div>
+    <div class="p-col-2">
+        <p-dropdown [id]="'year'" appendTo="body" [filter]="true" [(ngModel)]="year"
+            [placeholder]="'choose a year'" [showClear]="true" [options]="yearOptions" (ngModelChange)="ddlChange($event)">
+        </p-dropdown>
+    </div>
+
+    <div class="p-col-3">
+        <button (click)="getData()" pButton type="button" label="Refresh"
+                    class="p-button-rounded p-button-info"></button>
+    </div>
+</div>
+
+<hr/>
+
+<p-table [value]="statistics">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>An</th>
+            <th>Luna</th>
+            <th>Produs</th>
+            <th>Vazator</th>
+            <th>Numar produse</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-statistic>
+        <tr>
+            <td>{{statistic.year}}</td>
+            <td>{{statistic.month}}</td>
+            <td>{{statistic.product}}</td>
+            <td>{{statistic.retailer}}</td>
+            <th> {{statistic.productsNr}}</th>
+        </tr>
+    </ng-template>
+</p-table>

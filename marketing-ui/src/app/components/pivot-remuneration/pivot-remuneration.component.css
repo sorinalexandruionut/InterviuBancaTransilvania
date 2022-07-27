@@ -1,0 +1,14 @@
+
+table{
+  padding: 10px;
+}
+
+td{
+  padding: 10px;
+  text-align: center;
+}
+
+tbody tr:nth-child(even)
+{
+  background: orange;
+}

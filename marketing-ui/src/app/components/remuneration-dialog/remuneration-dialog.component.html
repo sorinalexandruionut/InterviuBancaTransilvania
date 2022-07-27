@@ -1,0 +1,46 @@
+<p-dialog [(visible)]="dialogVisible" [modal]="true" [draggable]="false" (onHide)="hideDialogue()"
+    [style]="{width: '50%'}">
+    <ng-template pTemplate="header">{{currentRemuneration?.id? 'Edit Remuneration': 'Add remuneration'}}</ng-template>
+    <div class="p-m-2">
+        <!-- <p-progressSpinner class="modalLoader" *ngIf="dialogueLoading"></p-progressSpinner>
+        <malib-dynamic-form #df *ngIf="dialogVisible && !dialogueLoading" [formGroup]="discussionForm"
+            (validSubmit)="saveDiscussionPoint()"></malib-dynamic-form> -->
+
+        <form [id]="'formId'" *ngIf="formGroup" [formGroup]="formGroup">
+
+            <label for="year">year</label> &nbsp;&nbsp;&nbsp;
+            <p-dropdown [formControlName]="'year'" [id]="'year'" appendTo="body" [filter]="true"
+                [placeholder]="'choose an year'" [showClear]="true" [options]="yearOptions">
+            </p-dropdown>
+            <br /> <br />
+            <label for="month">month</label> &nbsp;&nbsp;&nbsp;
+            <p-dropdown [formControlName]="'month'" [id]="'month'" appendTo="body" [filter]="true"
+                [placeholder]="'choose a month'" [showClear]="true" [options]="monthOptions">
+            </p-dropdown>
+            <br /> <br />
+            <label for="retailer">retailer</label> &nbsp;&nbsp;&nbsp;
+            <p-dropdown [formControlName]="'retailerId'" [id]="'retailer'" appendTo="body" [filter]="true"
+                [placeholder]="'choose an retailer'" [showClear]="true" [options]="retailerOptions">
+            </p-dropdown>
+            <br /> <br />
+            <label for="product">product</label> &nbsp;&nbsp;&nbsp;
+            <p-dropdown [formControlName]="'productId'" [id]="'product'" appendTo="body" [filter]="true"
+                [placeholder]="'choose a product'" [showClear]="true" [options]="productOptions">
+            </p-dropdown>
+            <br /> <br />
+            <label for="bonus">bonus</label> &nbsp;&nbsp;&nbsp;
+            <p-inputNumber [formControlName]="'bonus'" [id]="'bonus'" [placeholder]="'Enter a value'"
+                [useGrouping]="false"></p-inputNumber>
+        </form>
+    </div>
+
+    <!-- currentRemuneration?.id? 'UPDATE': 'CREATE' -->
+    <p-footer>
+        <button [disabled]="saveInProgress" pButton pRipple (click)="hideDialogue()" type="button" label="CANCEL"
+            class="p-button-rounded p-button-secondary"></button>
+        <button [disabled]="saveInProgress" pButton pRipple (click)="save()" type="button" [label]="'Save'"
+            class="p-button-rounded p-button-warning">
+            <p-progressSpinner class="btnLoader" *ngIf="saveInProgress"></p-progressSpinner>
+        </button>
+    </p-footer>
+</p-dialog>

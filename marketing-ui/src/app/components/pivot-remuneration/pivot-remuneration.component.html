@@ -1,0 +1,45 @@
+<div class="p-grid">
+    <div class="p-col-1">
+        <label for="month"> Month</label>
+    </div>
+    <div class="p-col-2">
+        <p-dropdown [id]="'month'" appendTo="body" [filter]="true" [(ngModel)]="month" [placeholder]="'choose a month'"
+            [showClear]="true" [options]="monthOptions" (ngModelChange)="ddlChange($event)">
+        </p-dropdown>
+    </div>
+    <div class="p-col-1">
+        <label for="year"> Year</label>
+    </div>
+    <div class="p-col-2">
+        <p-dropdown [id]="'year'" appendTo="body" [filter]="true" [(ngModel)]="year" [placeholder]="'choose a year'"
+            [showClear]="true" [options]="yearOptions" (ngModelChange)="ddlChange($event)">
+        </p-dropdown>
+    </div>
+    <div class="o-col-3">
+        <button (click)="getData()" pButton type="button" label="Refresh"
+        class="p-button-rounded p-button-info"></button>
+    </div>
+</div>
+
+<hr />
+
+<div class="p-grid">
+    <table>
+        <thead>
+            <th></th>
+            <th *ngFor="let retailer of retailers"> {{retailer.label}} </th>
+        </thead>
+
+        <tbody>
+            <ng-container *ngFor="let data of pivotResults; let i = index">
+                <tr>
+                    <td><b>{{products[i]?.label}} </b></td>
+                    <td *ngFor="let cell of data">
+                        {{ cell }}
+                    </td>
+                </tr>
+            </ng-container>
+
+        </tbody>
+    </table>
+</div>
