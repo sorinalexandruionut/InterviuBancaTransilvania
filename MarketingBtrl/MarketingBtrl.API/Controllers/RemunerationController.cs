@@ -48,8 +48,6 @@ namespace MarketingBtrl.API.Controllers
         {
             var results = await _remunerationService.GetRemunerationsPivotAsync(year, month);
 
-            var a = await _remunerationService.GetStatistics(year, month);
-
             return Ok(results);
         }
 

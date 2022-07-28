@@ -6,23 +6,23 @@ namespace MarketingBtrl.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RetailerController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private IRetailerService _retailerService;
+        private IProductService _productService;
 
-        public RetailerController(IRetailerService retailerService)
+        public ProductController(IProductService productService)
         {
-            _retailerService = retailerService;
+            _productService = productService;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            var retailer = await _retailerService.GetAllAsync();
-            if (retailer == null)
+            var products = await _productService.GetAllAsync();
+            if (products == null)
                 return NotFound();
 
-            return Ok(retailer);
+            return Ok(products);
         }
        
     }

@@ -81,12 +81,12 @@ export class RemunerationDialogComponent implements OnInit {
     try {
         await this.remunerationService.save(saveModel);
         this.saveInProgress = false;
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Discussion point saved successfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Remuneration saved successfully' });
         this.refreshData.emit();
         this.hideDialogue();
     }
     catch (err) {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Discussion point could not be saved!' });
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Remuneration could not be saved!' });
         this.saveInProgress = false;
     } finally {
         this.formGroup?.enable();
